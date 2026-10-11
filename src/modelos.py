@@ -46,11 +46,25 @@ class ImagemAnotada:
                 atual.desenhar(img)
                 caixas_desenhadas += 1
 
-        cv.rectangle(img, (10, 10), (350, 110), (255, 255, 255), -1)
-        cv.rectangle(img, (10, 10), (350, 110), (0, 0, 0), 1)
-        cv.putText(img, f"Img: {self.caminho}", (20, 35), cv.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 1, cv.LINE_AA)
-        cv.putText(img, "0: Classe 0", (20, 65), cv.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 0), 1, cv.LINE_AA)
-        cv.putText(img, "1: Classe 1", (20, 95), cv.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 1, cv.LINE_AA)
+        font = cv.FONT_HERSHEY_SIMPLEX
+
+        cv.rectangle(img, (10, 15), (25, 30), (255, 255, 0), -1)
+        cv.rectangle(img, (10, 15), (25, 30), (0, 0, 0), 1)
+        # Texto ao lado da caixa, em branco com contorno preto
+        cv.putText(img, "class_id 0", (35, 28), font, 0.6, (0, 0, 0), 3, cv.LINE_AA)
+        cv.putText(img, "class_id 0", (35, 28), font, 0.6, (255, 255, 255), 1, cv.LINE_AA)
+
+        # Legenda Classe 1
+        cv.rectangle(img, (10, 45), (25, 60), (0, 0, 255), -1)
+        cv.rectangle(img, (10, 45), (25, 60), (0, 0, 0), 1)
+        cv.putText(img, "class_id 1", (35, 58), font, 0.6, (0, 0, 0), 3, cv.LINE_AA)
+        cv.putText(img, "class_id 1", (35, 58), font, 0.6, (255, 255, 255), 1, cv.LINE_AA)
+
+        # Nome da Imagem na parte inferior
+        texto_img = f"Img: {self.caminho}"
+        pos_y_inferior = altura - 20
+        cv.putText(img, texto_img, (10, pos_y_inferior), font, 0.6, (0, 0, 0), 3, cv.LINE_AA)
+        cv.putText(img, texto_img, (10, pos_y_inferior), font, 0.6, (255, 255, 255), 1, cv.LINE_AA)
 
         cv.imwrite(caminho_salvar, img)
         print(f"[{self.caminho}] {caixas_desenhadas} caixas desenhadas.")
