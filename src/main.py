@@ -1,16 +1,30 @@
+# Entregável 2 - Anotações de imagens com OpenCV
+#
+# Programa principal para organizar as anotações e exibir 
+# as imagens de forma interativa.
+#
+# Autor: Arthur Nascimento
+# Github.com/leKisho
+# ============================================================
+
 import cv2 as cv
-import sys
-from arquivos import carregar_anotacoes
+from arquivos import carregarAnotacoes 
 from modelos import ImagemAnotada
 
 def main():
-    eidict = carregar_anotacoes()
 
-    for image in sorted(eidict.keys()):
+    img_info: dict #Armazena as caixas que serão criadas, atribuidas a um arquivo de imagem
+    sair: bool #condição de quebra do loop - q pressionado para sair
+    k: int #valor equivalente da tecla na tabela ASCII
+    img_obj: object 
+
+    img_info = carregarAnotacoes()
+
+    for image in sorted(img_info.keys()):
         
-        img_obj = ImagemAnotada(image)
+        img_obj = ImagemAnotada(image) #cria o objeto, inicializando com o nome da imagem
         
-        for itens in eidict[image]:
+        for itens in img_info[image]:
             img_obj.adicionarDeteccao(itens[0], itens[1], itens[3], itens[2], itens[4])
 
         img_obj.criarImagem()
@@ -28,6 +42,8 @@ def main():
             break
 
     cv.destroyAllWindows()
+    
+    return 0
 
 if __name__ == "__main__":
     main()
