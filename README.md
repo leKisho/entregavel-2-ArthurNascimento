@@ -1,7 +1,6 @@
 # Entregável 2 — 2a Fase PS Harpia
 
-# Autor: Arthur Nascimento
-# [GitHub](https://github.com/leKisho)
+## Autor: Arthur Nascimento ;  [GitHub: leKisho](https://github.com/leKisho)
 
 Programa desenvolvido em Python para visualizar imagens com *bounding boxes* a partir de anotações fornecidas em um arquivo CSV.
 
@@ -9,17 +8,24 @@ Programa desenvolvido em Python para visualizar imagens com *bounding boxes* a p
 
 O programa lê as anotações de `dados/anotacoes.csv`, agrupa as detecções por imagem e desenha as caixas delimitadoras correspondentes sobre as imagens originais.
 
-As caixas são diferenciadas por cor conforme o identificador da classe:
-- **Classe 0:** ciano.
-- **Classe 1:** vermelho.
+O conjunto de dados contém 10 imagens e 581 caixas delimitadoras (*bounding boxes*). Cada caixa representa uma abstração de uma detecção, delimitando a região de um objeto na imagem e associando-a a uma classe identificada por um rótulo numérico binário (0 ou 1). As anotações são fornecidas no arquivo CSV, não sendo predições geradas pelo programa.
 
-A imagem também apresenta sua identificação e uma legenda. As imagens anotadas são salvas na pasta `resultados`, preservando os arquivos originais.
+As caixas são diferenciadas por cor conforme o identificador da classe:
+- **Classe 0:** verde.
+- **Classe 1:** azul.
+
+As imagens anotadas são salvas na pasta `resultados`, preservando os arquivos originais.
 
 ## Dependências
 
-O programa utiliza Python 3 e a biblioteca OpenCV (`opencv-python`). A biblioteca `csv`, utilizada para ler as anotações, faz parte da biblioteca padrão do Python.
+O programa utiliza Python 3 e a biblioteca OpenCV (`opencv-python`). 
 
-Para instalar as dependências, execute na raiz do repositório:
+Também são utilizados os seguintes módulos da biblioteca padrão do Python:
+- **csv:** leitura dos dados de anotação.
+- **pathlib:** manipulação de caminhos de arquivos e diretórios.
+- **sys:** acesso a funcionalidades do sistema, incluindo o encerramento do programa em caso de erro.
+
+Os módulos da biblioteca padrão já acompanham o Python e não precisam ser instalados separadamente. Para instalar o OpenCV, execute na raiz do repositório
 
 ```bash
 python3 -m venv .venv
